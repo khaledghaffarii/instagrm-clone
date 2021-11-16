@@ -1,10 +1,17 @@
 import Image from "next/image";
-import { SearchIcon } from "@heroicons/react/solid";
-
+import {
+  HeartIcon,
+  MenuIcon,
+  PaperAirplaneIcon,
+  PlusCircleIcon,
+  SearchIcon,
+  UserGroupIcon,
+} from "@heroicons/react/outline";
+import { HomeIcon } from "@heroicons/react/solid";
 function Header() {
   return (
-    <div>
-      <div className=" flex  justify-between py-6 max-w-6xl ">
+    <div classNam="shadow-sm border-b bg-white sticky top-0 z-50 ">
+      <div className=" flex  justify-between py-6 max-w-6xl mx-5 xl:mx-auto">
         <div className="relative w-24 hidden lg:inline-grid cursor-pointer ">
           <Image
             src="https://links.papareact.com/ocw "
