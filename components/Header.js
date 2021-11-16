@@ -10,13 +10,14 @@ import {
 import { HomeIcon } from "@heroicons/react/solid";
 function Header() {
   return (
-    <div classNam="shadow-sm border-b bg-white sticky top-0 z-50 ">
-      <div className=" flex  justify-between py-6 max-w-6xl mx-5 xl:mx-auto">
+    <div className="shadow-sm border-b bg-white sticky top-0 z-50 ">
+      <div className="flex justify-between py-6 max-w-6xl mx-5 xl:mx-auto">
         <div className="relative w-24 hidden lg:inline-grid cursor-pointer ">
           <Image
             src="https://links.papareact.com/ocw "
             layout="fill"
             objectFit="contain"
+            priority={false}
           />
         </div>
         <div className="relative  w-10 m-2 lg:hidden flex-shrink-0 cursor-pointer">
