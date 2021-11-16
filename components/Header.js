@@ -38,7 +38,29 @@ function Header() {
             />
           </div>
         </div>
-        
+        {/* right */}
+
+        <div className="flex items-center justify-end space-x-4">
+          <HomeIcon className="navBtn" />
+          <div className="relative navBtn">
+            {" "}
+            <PaperAirplaneIcon className="navBtn rotate-45" />
+            <div className="absolute -top-2 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center animate-pulse text-white justify-center">
+              3
+            </div>
+          </div>
+
+          <MenuIcon className="h-6 md:hidden cursor-pointer " />
+          <PlusCircleIcon className="navBtn" />
+          <UserGroupIcon className="navBtn" />
+          <HeartIcon className="navBtn" />
+
+          <img
+            className="h-10 w-10 rounded-full cursor-pointer hover:scale-125"
+            alt=" profile pic"
+            src="https://avatars.githubusercontent.com/u/75438046?s=400&u=4ad31515204e1d0d63e7940b107a25b85382a77c&v=4"
+          />
+        </div>
       </div>
     </div>
   );
