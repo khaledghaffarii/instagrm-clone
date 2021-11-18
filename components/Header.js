@@ -10,12 +10,17 @@ import {
 import { HomeIcon } from "@heroicons/react/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { app } from "../firebase";
+import { useRouter } from "next/router";
 function Header() {
   const { data: session } = useSession();
+  const router= useRouter();
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50 ">
       <div className="flex justify-between  max-w-6xl mx-5 xl:mx-auto">
-        <div className="relative w-24 hidden lg:inline-grid cursor-pointer ">
+        <div
+          onClick={() => router.push("/")}
+          className="relative w-24 hidden lg:inline-grid cursor-pointer "
+        >
           <Image
             src="https://links.papareact.com/ocw "
             layout="fill"
@@ -23,7 +28,10 @@ function Header() {
             priority={false}
           />
         </div>
-        <div className="relative  w-10 m-2 lg:hidden flex-shrink-0 cursor-pointer">
+        <div
+          onClick={() => router.push("/")}
+          className="relative  w-10 m-2 lg:hidden flex-shrink-0 cursor-pointer"
+        >
           <Image
             src="https://links.papareact.com/jjm "
             layout="fill"
@@ -44,7 +52,7 @@ function Header() {
         </div>
 
         <div className="flex items-center justify-end space-x-4">
-          <HomeIcon className="navBtn" />
+          <HomeIcon onClick={() => router.push("/")} className="navBtn" />
           <MenuIcon className="h-6 md:hidden cursor-pointer " />
           {session ? (
             <>
@@ -61,7 +69,7 @@ function Header() {
               <HeartIcon className="navBtn" />
 
               <img
-              onClick={signOut }
+                onClick={signOut}
                 className="h-10 w-10 rounded-full cursor-pointer hover:scale-125"
                 alt=" profile pic"
                 src={session?.user?.image}
