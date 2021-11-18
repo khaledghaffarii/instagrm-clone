@@ -19,7 +19,7 @@ function Suggestions() {
       {Object.values(suggestions).map((profile) => {
         return (
           <div
-            className="flex items-center justify-between mt-3 "
+            className="flex items-center justify-between mt-3 cursor-pointer"
             key={profile.id}
           >
             <img
