@@ -4,6 +4,7 @@ function signIn({ providers }) {
   console.log(Object.values(providers));
   return (
     <>
+    <Header/>
       <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-54 px-14 text-center ">
         <img className="w-80" src="https://links.papareact.com/ocw " />
         <p className="font-xs italic">
