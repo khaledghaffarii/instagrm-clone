@@ -147,9 +147,11 @@ function Modal() {
                 <div className="mt-5 sm:mt-6">
                   <button
                     type="button"
+                    disabled={!selectedFile}
+                    onClick={uploadPost}
                     className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none disabled:cursor-not-allowed disabled:hover:bg-gray-300"
                   >
-                    Upload Post
+                    {loading ? "Uploading..." : "Upload Post"}
                   </button>
                 </div>
               </div>
