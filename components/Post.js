@@ -17,21 +17,21 @@ import {
   DotsHorizontalIcon,
   EmojiHappyIcon,
   HeartIcon,
-  MenuIcon,
   PaperAirplaneIcon,
-  PlusCircleIcon,
-  SearchIcon,
-  UserGroupIcon,
 } from "@heroicons/react/outline";
-import { HomeIcon } from "@heroicons/react/solid";
+
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Moment from "react-moment";
+import { HeartIconFilled } from '@heroicons/react/solid';
+import { Icon } from "@iconify/react";
 
 function Post({ id, username, caption, userImg, img }) {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [hasLiked, setHasLiked] = useState(false);
 
   useEffect(
     () =>
