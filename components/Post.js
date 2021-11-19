@@ -70,10 +70,8 @@ function Post({ id, username, caption, userImg, img }) {
   };
   const sendComment = async (e) => {
     e.preventDefault();
-
     const commentToSend = comment;
     setComment("");
-
     await addDoc(collection(db, "posts", id, "comments"), {
       comment: commentToSend,
       username: session.user.username,
@@ -99,7 +97,16 @@ function Post({ id, username, caption, userImg, img }) {
       {session && (
         <div className="flex justify-between m-3">
           <div className="flex  space-x-4 ">
-            <HeartIcon className="btn" />
+            {hasLiked ? (
+              <Icon
+                icon="heroicons-solid:heart"
+                onClick={likePost}
+                className="btn w-7 text-red-500"
+              />
+            ) : (
+              <HeartIcon onClick={likePost} className="btn" />
+            )}
+
             <ChatIcon className="btn" />
             <PaperAirplaneIcon className="btn" />
           </div>
