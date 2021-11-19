@@ -11,7 +11,9 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
+import { useSession } from 'next-auth/react';
 function Post({ id, username, caption, userImg, img }) {
+    const { data: session } = useSession();
   return (
     <div className="bg-white my-9 border">
       {/* header */}
@@ -27,14 +29,16 @@ function Post({ id, username, caption, userImg, img }) {
       {/* img */}
       <img src={img} alt="" className="object-cover w-full " />
       {/* Button */}
-      <div className="flex justify-between m-3">
-        <div className="flex  space-x-4 ">
-          <HeartIcon className="btn" />
-          <ChatIcon className="btn" />
-          <PaperAirplaneIcon className="btn" />
+      {session && (
+        <div className="flex justify-between m-3">
+          <div className="flex  space-x-4 ">
+            <HeartIcon className="btn" />
+            <ChatIcon className="btn" />
+            <PaperAirplaneIcon className="btn" />
+          </div>
+          <BookmarkIcon className="btn" />
         </div>
-        <BookmarkIcon className="btn" />
-      </div>
+      )}
 
       {/* caption */}
       <div>
@@ -45,15 +49,17 @@ function Post({ id, username, caption, userImg, img }) {
       </div>
       {/* coments */}
       {/* input box */}
-      <form className="flex items-center p-4">
-        <EmojiHappyIcon className="h-7" />
-        <input
-          className="border-none flex-1 focus:ring-0 outline-none"
-          type="text"
-          placeholder="Add acomment ..."
-        ></input>
-        <button className="font-semibold text-blue-400">Post</button>
-      </form>
+      {session && (
+        <form className="flex items-center p-4">
+          <EmojiHappyIcon className="h-7" />
+          <input
+            className="border-none flex-1 focus:ring-0 outline-none"
+            type="text"
+            placeholder="Add acomment ..."
+          ></input>
+          <button className="font-semibold text-blue-400">Post</button>
+        </form>
+      )}
     </div>
   );
 }
