@@ -3,12 +3,55 @@ import { modalState } from "../atoms/moduleAtom";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
 import { CameraIcon } from "@heroicons/react/outline";
+import { serverTimestamp, updateDoc, collection } from "@firebase/firestore";
+import { db, storage } from "../firebase";
+import {
+  ref,
+  getDownloadURL,
+  uploadString,
 
+ 
+} from "@firebase/storage";
+import { doc, addDoc } from "firebase/firestore"; 
+import { async } from "../pages/auth/signIn";
+import { useSession } from "next-auth/react";
 function Modal() {
   const [open, setOpen] = useRecoilState(modalState);
   const filePickerRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const captionRef = useRef(null);
+  const { data: session } = useSession();
+  const [loading, setLoading] = useState(false);
+
+  const uploadPost = async () => {
+    if (loading) return;
+    setLoading(true);
+
+    
+      const docRef = await addDoc(collection(db, "posts"), {
+        username: session.user.username,
+        caption: captionRef.current.value,
+        profileImg: session.user.image,
+        timestamp: serverTimestamp(),
+      });
+      console.log("New doc added with ID", docRef.id);
+      
+      const imageRef = ref(storage, `posts/${docRef.id}/image`);
+      
+      await uploadString(imageRef, selectedFile, "data_url").then(
+          async (snapshot) => {
+              const downloadUrl = await getDownloadURL(imageRef);
+              await updateDoc(doc(db, "posts", docRef.id), {
+                  image: downloadUrl,
+                });
+            }
+            );
+       
+
+    setOpen(false);
+    setLoading(false);
+    setSelectedFile(null);
+  };
 
   const addImageToPost = (e) => {
     const reader = new FileReader();
