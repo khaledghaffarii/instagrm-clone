@@ -46,6 +46,28 @@ function Post({ id, username, caption, userImg, img }) {
       ),
     [db]
   );
+
+  useEffect(
+    () =>
+      onSnapshot(query(collection(db, "posts", id, "likes")), (snapshot) => {
+        setLikes(snapshot.docs);
+      }),
+    [db, id]
+  );
+  useEffect(() =>
+    setHasLiked(
+      likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+    )
+  );
+  const likePost = async () => {
+    if (hasLiked) {
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+        username: session.user.username,
+      });
+    }
+  };
   const sendComment = async (e) => {
     e.preventDefault();
 
