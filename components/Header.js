@@ -38,7 +38,7 @@ function Header() {
           <Image
             src="https://links.papareact.com/jjm "
             layout="fill"
-            objectFit="contain"
+            objectFit="contain"é
           />
         </div>
         <div className="max-w-xs">
@@ -69,7 +69,7 @@ function Header() {
 
               <PlusCircleIcon onClick={()=> setOpen(true)} className="navBtn" />
               <UserGroupIcon className="navBtn" />
-              <HeartIcon className="navBtn" />
+              <HeartIcon className="navBtn"/>
 
               <img
                 onClick={signOut}
@@ -79,7 +79,7 @@ function Header() {
               />
             </>
           ) : (
-            <button onClick={signIn}>SignIn</button>
+            <button className="px-2" onClick={signIn}>SignIn</button>
           )}
         </div>
       </div>

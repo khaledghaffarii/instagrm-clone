@@ -7,8 +7,8 @@ function Feed() {
   const { data: session } = useSession();
   return (
     <main
-      className={`gird grid-cols-1 md:grid-cols-2 md:max-w-3xl xl:grid-cols-3 xl:max-w-2xl mx-auto ${
-        !session && "!grid-cols-1 !max-w-2xl"
+      className={`gird grid-cols-1 md:grid-cols-2  md:max-w-3xl xl:grid-cols-3 xl:max-w-2xl mx-auto ${
+        !session && "!grid-cols-1 !max-w-2xl "
       } `}
     >
       <section className="col-span-2">
@@ -16,7 +16,7 @@ function Feed() {
         <Posts />
       </section>
       {session && (
-        <section className=" hidden xl:inline-grid md:col-span-1 float-right mr-5">
+        <section className="hidden xl:inline-grid md:col-span-1 float-right mr-5">
           <div className="fixed top-20">
             <MiniProfile />
             <Suggestions />
